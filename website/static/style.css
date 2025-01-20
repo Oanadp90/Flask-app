@@ -66,6 +66,77 @@ p {color: rgb(121, 235, 235);
     font-weight: bold;
 }
 
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.image-item { margin: 20px; } 
+
+.image { max-width: 50%; height: auto; } 
+
+.image-container p { margin: 10px; font-size: 16px; }
+
+.toggle-tick {
+    margin: 1px; /* Remove any default margin */
+    padding: 7px 10px; /* Add padding for better appearance */
+    background-color: #326192; /* Button background color */
+    color: rgb(11, 244, 248); /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: inline-block; /* Ensure inline-block display */
+    vertical-align: middle; /* Align vertically with other elements */
+    box-shadow: none; /* Remove any default box shadow */
+    outline: none; /* Remove any default outline */
+    background-clip: padding-box; /* Prevent background bleed */
+}
+
+.toggle-tick:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    border: none; /* Ensure no border on hover */
+    outline: none; /* Ensure no outline on hover */
+}
+
+.task-item {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between items */
+}
+
+/* Reset default margins and padding for elements */
+.task-item p {
+    margin: 0; /* Remove default margin */
+}
+
+.task-item form {
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+
+.tick {
+    width: 20px;  /* Set the size of the check mark */
+    height: 20px;
+    margin-left: 10px;
+}
+
+/* Add these classes in your CSS */
+.tick.complete {
+    display: inline-block; /* Show the image */
+}
+
+.tick.incomplete {
+    display: none; /* Hide the image */
+}
+
+
+.delete {
+    margin-left: 20px;
+    color: red;
+}
+
 
 form {
     font-family: Arial, Helvetica, sans-serif;
@@ -81,14 +152,54 @@ label {
     margin-bottom: 1px;
 }
 
-.complete {
-    color: green;
+.star-rating {
+    direction: ltr; /* Left to right layout */
+    unicode-bidi: bidi-override; /* Ensure proper alignment */
+    font-size: 2rem; /* Size of stars */
+    display: flex; /* Display stars inline horizontally */
 }
 
-.incomplete {
-    color: red
+.star-rating input {
+    display: none; /* Hide radio buttons */
 }
 
-.delete {
-    color: red;
+.star-rating label {
+    color: #ccc; /* Default star color */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #f5b301; /* Star color when hovered or checked */
+}
+
+/* Style for text review */
+.text-review {
+    margin-top: 1rem;
+}
+
+.text-review textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Style for submit button */
+.submit-review {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.submit-review:hover {
+    background-color: #0056b3;
 }

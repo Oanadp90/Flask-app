@@ -1,34 +1,51 @@
 {% extends "base.html" %}
 
-{% block title %}To Do List{% endblock %}
-
 {% block content %}
-    <div>
-        <h1>Hello and welcome to my app!</h1>
-        <p>This is an app that will complete the tasks you need to be done</p>
-    </div>
-
     <h1>To Do List</h1>
-    <form action="{{ url_for('my_view.add') }}" method="post">
-        <div>
-            <label>Todo task</label>
-            <input type="text" name="task" placeholder="Enter a Task">
-            <button type="submit">Add a Task</button>
-        </div>
+
+    <!-- Form to add new tasks -->
+    <form action="{{ url_for('my_view.add') }}" method="POST">
+        <label for="task">Todo Task:</label>
+        <input type="text" name="task" id="task" placeholder="Enter a Task" required>
+        <button type="submit">Add Task</button>
     </form>
 
     <hr>
+
+    <!-- Loop through all tasks -->
     {% for todo in todo_list %}
-        <div>
-            <p>{{ todo.id }} : {{ todo.task }} : {{ todo.complete }}</p>
-            {% if not todo.complete %}
-                <p class="Incomplete">Task Incomplete. <a href="{{ url_for('my_view.update', todo_id=todo.id) }}">Mark as <button type="button">Complete</button>?</a></p>
+        <div class="task-item">
+            <p>{{ todo.id }} : {{ todo.task }}</p>
+
+            <!-- Display the inline SVG for the checkmark if the task is complete -->
+            {% if todo.complete %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="tick" viewBox="0 0 16 16">
+                    <path d="M16 2L6 14 0 9l2-2 4 4L14 0z"/>
+                </svg>
+                <p class="Complete" style="color:green;">Task Complete</p>
             {% else %}
-                <p class="complete">Task Complete. <a href="{{ url_for('my_view.update', todo_id=todo.id) }}">Mark as <button type="button">Incomplete</button>?</a></p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="tick" style="display: none;" viewBox="0 0 16 16">
+                    <path d="M16 2L6 14 0 9l2-2 4 4L14 0z"/>
+                </svg>
+                <p class="Incomplete" style="color:red;">Task Incomplete</p>
             {% endif %}
-            <p class="delete"> <a href="{{ url_for('my_view.delete', todo_id=todo.id) }}">Delete Task?</a></p>
+
+            <!-- Form to mark the task as complete/incomplete -->
+            <form action="{{ url_for('my_view.update', todo_id=todo.id) }}" method="POST" style="display: inline;">
+                <button type="submit" class="toggle-tick">
+                    {% if todo.complete %}
+                        Mark as Incomplete
+                    {% else %}
+                        Mark as Complete
+                    {% endif %}
+                </button>
+            </form>
+
+            <!-- Link to delete the task -->
+            <p class="delete"><a href="{{ url_for('my_view.delete', todo_id=todo.id) }}">Delete Task</a></p>
         </div>
     {% endfor %}
+
     {% if message %}
         <p class="error">{{ message }}</p>
     {% endif %}

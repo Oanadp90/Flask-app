@@ -1,18 +1,56 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block content %}
-
+<head>
 </head>
 <body>
     <header>
         <div class="welcome-container2">
             <section>
                 <p class="welcome-text2">In here, you can express your opinion by giving a review to this app.</p>
-                <p>Please let me know what you think about this app by giving it a star rate.</p>
+                <p>Please let me know what you think about this app by giving it a star rate and writing a review.</p>
             </section>
         </div>
-    </header>    
+    </header>
+
+    <!-- Star Rating Section -->
+    <form action="{{ url_for('my_view.submit_review') }}" method="POST" class="review-form">
+        <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label for="star5" title="5 stars">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label for="star4" title="4 stars">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label for="star3" title="3 stars">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label for="star2" title="2 stars">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label for="star1" title="1 star">&#9733;</label>
+        </div>
+
+        <!-- Text Review Input -->
+        <div class="text-review">
+            <textarea name="review" placeholder="Write your review here..." rows="4" required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="submit-review">Submit Review</button>
+        </div>
+    </form>
 </body>
+{% endblock %}
 
-
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const stars = document.querySelectorAll('.star-rating input');
+            stars.forEach(star => {
+                star.addEventListener('change', function() {
+                    alert(`You rated this ${this.value} stars!`);
+                    // Add AJAX call here to save rating to the server
+                });
+            });
+        });
+    </script>
 {% endblock %}
