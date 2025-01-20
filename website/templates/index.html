@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}To Do List{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Hello and welcome to my app!</h1>
+        <p>This is an app that will complete the tasks you need to be done</p>
+    </div>
+
+    <h1>To Do List</h1>
+    <form action="{{ url_for('my_view.add') }}" method="post">
+        <div>
+            <label>Todo task</label>
+            <input type="text" name="task" placeholder="Enter a Task">
+            <button type="submit">Add a Task</button>
+        </div>
+    </form>
+
+    <hr>
+    {% for todo in todo_list %}
+        <div>
+            <p>{{ todo.id }} : {{ todo.task }} : {{ todo.complete }}</p>
+            {% if not todo.complete %}
+                <p class="Incomplete">Task Incomplete. <a href="{{ url_for('my_view.update', todo_id=todo.id) }}">Mark as <button type="button">Complete</button>?</a></p>
+            {% else %}
+                <p class="complete">Task Complete. <a href="{{ url_for('my_view.update', todo_id=todo.id) }}">Mark as <button type="button">Incomplete</button>?</a></p>
+            {% endif %}
+            <p class="delete"> <a href="{{ url_for('my_view.delete', todo_id=todo.id) }}">Delete Task?</a></p>
+        </div>
+    {% endfor %}
+    {% if message %}
+        <p class="error">{{ message }}</p>
+    {% endif %}
+{% endblock %}
