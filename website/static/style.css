@@ -152,6 +152,7 @@ label {
     margin-bottom: 1px;
 }
 
+/* Add these styles to your CSS */
 .star-rating {
     direction: ltr; /* Left to right layout */
     unicode-bidi: bidi-override; /* Ensure proper alignment */
@@ -177,6 +178,7 @@ label {
 /* Style for text review */
 .text-review {
     margin-top: 1rem;
+    color: #111;
 }
 
 .text-review textarea {
@@ -192,7 +194,7 @@ label {
 .submit-review {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    background-color: #007bff;
+    background-color: #00a2ff;
     color: white;
     border: none;
     border-radius: 4px;
@@ -202,4 +204,22 @@ label {
 
 .submit-review:hover {
     background-color: #0056b3;
+}
+
+/* Style for displaying reviews */
+.display-reviews {
+    margin-top: 2rem;
+}
+
+.review-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.review-item p {
+    margin: 0.5rem 0;
+    color: #3232d3;
 }

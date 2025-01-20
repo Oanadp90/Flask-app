@@ -13,7 +13,7 @@
         </div>
     </header>
 
-    <!-- Star Rating Section -->
+    <!-- Review Form -->
     <form action="{{ url_for('my_view.submit_review') }}" method="POST" class="review-form">
         <div class="star-rating">
             <input type="radio" id="star5" name="rating" value="5" />
@@ -30,7 +30,7 @@
 
         <!-- Text Review Input -->
         <div class="text-review">
-            <textarea name="review" placeholder="Write your review here..." rows="4" required></textarea>
+            <textarea id="review" name="review" placeholder="Write your review here..." rows="4" required></textarea>
         </div>
 
         <!-- Submit Button -->
@@ -38,19 +38,17 @@
             <button type="submit" class="submit-review">Submit Review</button>
         </div>
     </form>
+
+    <!-- Display Reviews -->
+    <div class="display-reviews">
+        <h3>User Reviews:</h3>
+        {% for review in reviews %}
+            <div class="review-item">
+                <p>Rating: {{ review.rating }} stars</p>
+                <p>Review: {{ review.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 {% endblock %}
 
-{% block scripts %}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const stars = document.querySelectorAll('.star-rating input');
-            stars.forEach(star => {
-                star.addEventListener('change', function() {
-                    alert(`You rated this ${this.value} stars!`);
-                    // Add AJAX call here to save rating to the server
-                });
-            });
-        });
-    </script>
-{% endblock %}

@@ -4,6 +4,8 @@ from . import db
 
 my_view = Blueprint("my_view", __name__)
 
+reviews = []
+
 
 @my_view.route("/")
 def home():
@@ -19,12 +21,13 @@ def page2():
 
 @my_view.route('/page3')
 def page3():
-    return render_template('page3.html')
+    return render_template('page3.html', reviews=reviews)
 
 @my_view.route('/submit_review', methods=['POST'])
 def submit_review():
     rating = request.form['rating']
-    review = request.form['review']
+    text = request.form['review']
+    reviews.append({'rating': rating, 'text': text})
     return redirect(url_for('my_view.page3'))
 
 
