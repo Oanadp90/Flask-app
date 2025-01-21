@@ -3,7 +3,7 @@
 {% block content %}
     <h1>To Do List</h1>
 
-    <!-- Form to add new tasks -->
+    <!-- Form for adding new tasks -->
     <form action="{{ url_for('my_view.add') }}" method="POST">
         <label for="task">Todo Task:</label>
         <input type="text" name="task" id="task" placeholder="Enter a Task" required>
@@ -12,7 +12,7 @@
 
     <hr>
 
-    <!-- Loop through all tasks -->
+    <!-- Loop for going through all tasks -->
     {% for todo in todo_list %}
         <div class="task-item">
             <p>{{ todo.id }} : {{ todo.task }}</p>
@@ -45,7 +45,7 @@
             <p class="delete"><a href="{{ url_for('my_view.delete', todo_id=todo.id) }}">Delete Task</a></p>
         </div>
     {% endfor %}
-
+    <!-- Error handling -->
     {% if message %}
         <p class="error">{{ message }}</p>
     {% endif %}
