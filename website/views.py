@@ -1,11 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for,jsonify
 from .models import Todo
 from . import db
 
 my_view = Blueprint("my_view", __name__)
 
 reviews = []
-
 
 @my_view.route("/")
 def home():
