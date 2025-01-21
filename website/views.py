@@ -54,6 +54,7 @@ def update(todo_id):
         db.session.commit()
     return redirect(url_for("my_view.home"))
 
+
 @my_view.route("/delete/<todo_id>", methods=["POST", "GET"])
 def delete(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()

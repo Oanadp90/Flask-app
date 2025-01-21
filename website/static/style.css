@@ -11,12 +11,17 @@ nav {
   h1 {color: rgb(129, 71, 206);
 }
 
+nav.text {
+    color: #111;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #07dbe7;
+    border-radius: 10px;
     
   }
   
@@ -26,7 +31,7 @@ ul {
   
   li a {
     display: block;
-    color: white;
+    color: rgb(189, 7, 255);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -79,12 +84,12 @@ p {color: rgb(121, 235, 235);
 .image-container p { margin: 10px; font-size: 16px; }
 
 .toggle-tick {
-    margin: 1px; /* Remove any default margin */
-    padding: 7px 10px; /* Add padding for better appearance */
+    margin: 2px; /* Remove any default margin */
+    padding: 12px; /* Add padding for better appearance */
     background-color: #326192; /* Button background color */
     color: rgb(11, 244, 248); /* Button text color */
     border: none; /* Remove default border */
-    border-radius: 4px; /* Rounded corners */
+    border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     display: inline-block; /* Ensure inline-block display */
     vertical-align: middle; /* Align vertically with other elements */
@@ -140,11 +145,14 @@ p {color: rgb(121, 235, 235);
 
 form {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(192, 228, 237);
+    background-color: rgb(114, 219, 245);
     text-align:left;
     text-decoration: solid;
+    padding: 20px;
     padding-left: 10px;
     margin: 0%;
+    border-radius: 10px;
+    
 }
 
 label {
